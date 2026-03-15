@@ -20,6 +20,18 @@
     </properties>
 
     <dependencies>
+        <!-- ========== 新增：Redis 数据操作核心依赖 ========== -->
+        <!-- Spring Data Redis（整合 Redis 客户端，支持 RedisTemplate/StringRedisTemplate） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- 可选（推荐）：显式指定 Jedis 客户端（避免默认客户端适配问题） -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <!-- ========== Redis 依赖结束 ========== -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
