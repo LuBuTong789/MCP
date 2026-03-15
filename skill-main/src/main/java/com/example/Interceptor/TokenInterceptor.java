@@ -21,6 +21,8 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 1. 从请求头获取 Token（推荐方式，比请求参数更安全）
         String token = request.getHeader("Authorization");
+
+
         if (token == null || token.isEmpty()) {
             // 无 Token，直接返回 401
             response.setStatus(HttpStatus.UNAUTHORIZED.value());

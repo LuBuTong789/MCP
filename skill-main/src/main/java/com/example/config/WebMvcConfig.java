@@ -34,10 +34,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")  // 拦截所有接口
-                .excludePathPatterns(  // 排除不需要拦截的接口（比如登录、授权接口）
-                        "/api/common/auth/**",  // 你的授权接口
-                        "/swagger-ui/**",  // swagger文档（可选）
-                        "/v3/api-docs/**"   // swagger文档（可选）
+                .excludePathPatterns(
+                        "/api/common/auth/**",    // 原有：登录授权接口
+                        "/stream/**",             // 🔥 新增：放行所有SSE流式接口（关键！）
+                        "/swagger-ui/**",         // swagger文档
+                        "/v3/api-docs/**"         // swagger文档
                 );
     }
 }
