@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.example</groupId> <!-- 比如 com.mcp，必须和父 POM 一致 -->
+        <artifactId>MCP</artifactId> <!-- 父项目的 artifactId，比如 mcp-parent -->
+        <version>1.0-SNAPSHOT</version> <!-- 父项目版本，和父 POM 一致 -->
+        <!-- 如果父 POM 不在当前目录的上级，需要指定 relativePath，比如父 POM 在 ../pom.xml -->
+
+    </parent>
+
+
+    <!-- 2. 子模块自身的基础配置（只需要定义自己的 artifactId，groupId/version 继承父 POM） -->
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>test</artifactId> <!-- 子模块名，比如 common -->
+
+
+    <!-- 核心依赖：仅这一个就够文件下载使用 -->
+    <dependencies>
+        <!-- Spring Boot Web 核心依赖（自带Tomcat服务器） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

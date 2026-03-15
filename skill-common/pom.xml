@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 1. 核心：继承父 POM（必须放在最前面） -->
+    <parent>
+        <groupId>com.example</groupId> <!-- 比如 com.mcp，必须和父 POM 一致 -->
+        <artifactId>MCP</artifactId> <!-- 父项目的 artifactId，比如 mcp-parent -->
+        <version>1.0-SNAPSHOT</version> <!-- 父项目版本，和父 POM 一致 -->
+    </parent>
+
+    <!-- 2. 子模块自身的基础配置（只需要定义自己的 artifactId，groupId/version 继承父 POM） -->
+
+    <artifactId>skill-common</artifactId> <!-- 子模块名，比如 common -->
+
+
+
+
+    <!-- 3. 子模块专属依赖（无需写版本号，父 POM 的 dependencyManagement 已管理） -->
+    <dependencies>
+        <!-- 核心：Spring Web（支撑 HttpServletRequest、@RestController 等） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- ========== 新增：Redis 数据操作核心依赖 ========== -->
+        <!-- Spring Data Redis（整合 Redis 客户端，支持 RedisTemplate/StringRedisTemplate） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- 可选（推荐）：显式指定 Jedis 客户端（避免默认客户端适配问题） -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <!-- ========== Redis 依赖结束 ========== -->
+
+        <!-- Lombok（简化 ResultCode 枚举的 getter/setter） -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Apache 公共工具（简化判空、字符串处理等） -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!-- 测试依赖（仅测试环境生效） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Spring Boot 3.x 优先（兼容 2.x） -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.1</version> <!-- 适配 Spring Boot 3.x 的稳定版本 -->
+        </dependency>
+
+    </dependencies>
+
+    <!-- 4. 构建配置（可选：父 POM 已定义 spring-boot-maven-plugin，子模块可直接继承，无需重复） -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version> <!-- 适配 JDK 21 的稳定版本 -->
+                <configuration>
+                    <source>21</source> <!-- 和父 POM 的 JDK 版本一致 -->
+                    <target>21</target>
+                    <encoding>UTF-8</encoding>
+                    <!-- 关键：添加 -parameters 编译参数，保留参数名 -->
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <!-- 如需定制插件（比如修改配置），才需要重写，否则省略 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 版本继承父 POM，无需写 -->
+                <configuration>
+                    <!-- 可选：排除 Lombok 打包（如果用了） -->
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
