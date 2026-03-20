@@ -37,7 +37,8 @@ private ChatClient qwenChatClient;
 @GetMapping(value = "/stream/deepseekclient")
 public Flux<String> deepseekclient(@RequestParam(name = "question",defaultValue = "你是谁") String question)
 {
-    return deepseekChatClient.prompt(question).stream().content();
+    String msg ="你的问题 + 请纯文本输出，不要使用任何星号**加粗、不要Markdown格式，只用普通文字";
+    return deepseekChatClient.prompt(question).system(msg).stream().content();
 }
 
 @GetMapping(value = "/stream/qwenclient")
