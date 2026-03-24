@@ -22,5 +22,5 @@ public interface CommonSkill {
     Result<Object> returnSuccess(ResultCode data);
 
     // 统一失败返回
-    Result<Object>  returnError(int code, String msg);
+    Result<Object>  returnError(ResultCode data);
 }

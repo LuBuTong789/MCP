@@ -10,11 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>skill-common</module>
-        <module>skill-redis</module>
-        <module>skill-test</module>
         <module>skill-main</module>
-        <module>skill-es</module>
-        <module>skill-minio</module>
     </modules>
 
     <properties>

@@ -14,9 +14,6 @@
 
     <artifactId>skill-common</artifactId> <!-- 子模块名，比如 common -->
 
-
-
-
     <!-- 3. 子模块专属依赖（无需写版本号，父 POM 的 dependencyManagement 已管理） -->
     <dependencies>
         <!-- 核心：Spring Web（支撑 HttpServletRequest、@RestController 等） -->
@@ -51,12 +48,7 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
-        <!-- 测试依赖（仅测试环境生效） -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <!-- Spring Boot 3.x 优先（兼容 2.x） -->
         <dependency>
             <groupId>jakarta.annotation</groupId>

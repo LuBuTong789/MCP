@@ -62,7 +62,7 @@ public class CommonSkillImpl implements CommonSkill {
      * 统一失败响应
      */
     @Override
-    public Result<Object>  returnError(int code, String msg) {
-        return Result.fail(code, msg);
+    public Result<Object>  returnError(ResultCode data) {
+        return Result.fail(ResultCode.UNAUTHORIZED);
     }
 }

@@ -36,6 +36,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")  // 拦截所有接口
                 .excludePathPatterns(  // 排除不需要拦截的接口（比如登录、授权接口）
                         "/api/common/auth/**",  // 你的授权接口
+                        "/stream/deepseekclient/**",
                         "/swagger-ui/**",  // swagger文档（可选）
                         "/v3/api-docs/**"   // swagger文档（可选）
                 );

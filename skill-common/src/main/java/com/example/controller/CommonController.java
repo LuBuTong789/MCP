@@ -35,7 +35,7 @@ public class CommonController {
             // 返回给前端的 Token
             return commonSkill.returnSuccess(ResultCode.SUCCESS,token);
         } else {
-            return commonSkill.returnError(401, "token无效");
+            return commonSkill.returnError(ResultCode.UNAUTHORIZED);
         }
     }
 
@@ -67,7 +67,7 @@ public class CommonController {
             return commonSkill.returnSuccess(ResultCode.SUCCESS);
         } else {
             // Token 无效/过期
-            return commonSkill.returnError(HttpStatus.UNAUTHORIZED.value(), "Token无效或已过期");
+            return commonSkill.returnError(ResultCode.UNAUTHORIZED);
         }
     }
 

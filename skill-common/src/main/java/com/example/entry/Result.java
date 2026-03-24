@@ -39,8 +39,8 @@ public class Result<T> {
         return new Result<>(data);
     }
     // 失败响应（自定义状态码+消息）
-    public static <T> Result<T> fail(Integer code, String msg) {
-        return new Result<>(code, msg);
+    public static <T> Result<T> fail(ResultCode data) {
+        return new Result<>(data);
     }
 
 }
